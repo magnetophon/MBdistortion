@@ -44,7 +44,7 @@ drive2A = lowmid_group(vslider("[1] Drive
 drive2B = lowmid_group(vslider("[2] Drive
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):smooth(0.999);
-offset2A = lowmid_group(vslider("[j] Offset
+offset2A = lowmid_group(vslider("[3] Offset
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):smooth(0.999);
 offset2B = lowmid_group(vslider("[4] Offset
@@ -75,6 +75,14 @@ offset4B = high_group(vslider("[4] Offset
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):smooth(0.999);
 
+outgain_group(x)  = (vgroup("[3] output gain", x));
+drygain = outgain_group(hslider("[1] Dry gain
+                       [unit:dB][tooltip: ]",
+                       -144, -144, 0, 0.01)):db2linear:smooth(0.999);
+wetgain = outgain_group(hslider("[2] Wet gain
+                       [unit:dB][tooltip: ]",
+                       0, -144, 0, 0.01)):db2linear:smooth(0.999);
+
 MBdist( drive1,offset1, drive2,offset2, drive3,offset3, drive4,offset4)=
 filterbank(3,(fc1,fc2,fc3)):
 (
@@ -87,10 +95,16 @@ filterbank(3,(fc1,fc2,fc3)):
 stereo2MS(MS, x,y) = (x+(MS*y)), ((MS*x) + ((MS*-2)+1)*y);
 MS2stereo(MS, m,s) = ((m+(MS*s))/(MS+1)), (((MS*m) + ((MS*-2)+1)*s)/(MS+1));
 
-process(x,y) =
-stereo2MS(MS, x,y) :
-(MBdist( drive1A,offset1A, drive2A,offset2A, drive3A,offset3A, drive4A,offset4A),
- MBdist( drive1B,offset1B, drive2B,offset2B, drive3B,offset3B, drive4B,offset4B)) :
-MS2stereo(MS);
+MSMBdist(x,y) =
+  (
+    stereo2MS(MS, x,y) :
+      (MBdist( drive1A,offset1A, drive2A,offset2A, drive3A,offset3A, drive4A,offset4A)*wetgain,
+       MBdist( drive1B,offset1B, drive2B,offset2B, drive3B,offset3B, drive4B,offset4B)*wetgain) :
+    MS2stereo(MS)
+  )
+  ,
+  ((x:filterbank(3,(fc1,fc2,fc3)):>_)*drygain,(y:filterbank(3,(fc1,fc2,fc3)):>_)*drygain)
+:>(_,_);
 
+process(x,y) = MSMBdist(x,y);
 
