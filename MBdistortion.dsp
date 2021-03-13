@@ -26,52 +26,52 @@ bands_group(x)  = (hgroup("[2] frequency bands", x));
   himid_group(x)  = bands_group(hgroup("[3] high mid", x));
   high_group(x)   = bands_group(hgroup("[4] high", x));
 
-drive1A = low_group(vslider("[1] Drive
+drive1A = low_group(vslider("[1] Drive A
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-drive1B = low_group(vslider("[2] Drive
+drive1B = low_group(vslider("[2] Drive B
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset1A = low_group(vslider("[3] Offset
+offset1A = low_group(vslider("[3] Offset A
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset1B = low_group(vslider("[4] Offset
+offset1B = low_group(vslider("[4] Offset B
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-drive2A = lowmid_group(vslider("[1] Drive
+drive2A = lowmid_group(vslider("[1] Drive A
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-drive2B = lowmid_group(vslider("[2] Drive
+drive2B = lowmid_group(vslider("[2] Drive B
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset2A = lowmid_group(vslider("[3] Offset
+offset2A = lowmid_group(vslider("[3] Offset A
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset2B = lowmid_group(vslider("[4] Offset
+offset2B = lowmid_group(vslider("[4] Offset B
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-drive3A = himid_group(vslider("[1] Drive
+drive3A = himid_group(vslider("[1] Drive A
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-drive3B = himid_group(vslider("[2] Drive
+drive3B = himid_group(vslider("[2] Drive B
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset3A = himid_group(vslider("[3] Offset
+offset3A = himid_group(vslider("[3] Offset A
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset3B = himid_group(vslider("[4] Offset
+offset3B = himid_group(vslider("[4] Offset B
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-drive4A = high_group(vslider("[1] Drive
+drive4A = high_group(vslider("[1] Drive A
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-drive4B = high_group(vslider("[2] Drive
+drive4B = high_group(vslider("[2] Drive B
                        [tooltip: Amount of distortion]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset4A = high_group(vslider("[3] Offset
+offset4A = high_group(vslider("[3] Offset A
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
-offset4B = high_group(vslider("[4] Offset
+offset4B = high_group(vslider("[4] Offset B
                        [tooltip: Brings in even harmonics]",
                        0, 0, 1, 0.01)):si.smooth(0.999);
 
