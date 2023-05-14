@@ -1,8 +1,8 @@
 declare name "MBdistortion";
 declare author "Bart Brouns (bart@magnetophon.nl";
-declare copyright "Bart Brouns";
-declare version "1.1.1";
-declare license "GPLv2";
+declare copyright "Bart Brouns 2023";
+declare version "1.1.2";
+declare license "GPL-2.0";
 
 import("stdfaust.lib");
 
